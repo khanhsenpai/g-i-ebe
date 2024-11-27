@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bất ngờ cho em</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      margin: 0;
+      background: url('https://www.w3schools.com/w3images/clouds.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    #heart1, #heart2 {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      display: none;
+      animation: pulse 2s infinite, bounce 1s infinite;
+    }
+    #heart1::before, #heart1::after,
+    #heart2::before, #heart2::after {
+      content: '';
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: red;
+      animation: heartEffect 1s ease-in-out infinite;
+    }
+    #heart1::before {
+      left: 0;
+      top: 0;
+    }
+    #heart1::after {
+      left: 75px;
+      top: -50px;
+    }
+    #heart2::before {
+      left: -75px;
+      top: 0;
+    }
+    #heart2::after {
+      left: 0;
+      top: -50px;
+    }
+    #message {
+      font-size: 30px;
+      color: #fff;
+      display: none;
+      animation: typing 3s steps(50, end), blink .5s step-end infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid white;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    button:hover {
+      background-color: #e91e63;
+      transform: scale(1.1);
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-20px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    @keyframes heartEffect {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(0.8);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Bất ngờ dành cho em 💖</h1>
+  <button onclick="showHearts()">Bấm vào đây</button>
+  <div id="heart1"></div>
+  <div id="heart2"></div>
+  <button id="revealButton" onclick="showMessage()" style="display: none;">Bấm thêm lần nữa!</button>
+  <div id="message"></div>
+
+  <script>
+    function showHearts() {
+      const heart1 = document.getElementById('heart1');
+      const heart2 = document.getElementById('heart2');
+      const revealButton = document.getElementById('revealButton');
+      heart1.style.display = 'block';
+      heart2.style.display = 'block';
+      revealButton.style.display = 'inline-block';
+    }
+
+    function showMessage() {
+      const message = document.getElementById('message');
+      const text = "Ba ngàn con sông chỉ uống một gáo nước,";
+      const text2 = "Thiên hạ vạn người chỉ muốn nắm tay em.";
+
+      let i = 0;
+      message.style.display = 'block';
+      message.innerHTML = ""; // Clear previous message
+
+      const typeWriter = setInterval(() => {
+        if (i < text.length) {
+          message.innerHTML += text[i];
+          i++;
+        } else {
+          clearInterval(typeWriter);
+          setTimeout(() => {
+            message.innerHTML += "<br>" + text2; // Add the second part after a short delay
+          }, 500);
+        }
+      }, 100); // Hiệu ứng gõ chữ
+    }
+  </script>
+</body>
+</html>
